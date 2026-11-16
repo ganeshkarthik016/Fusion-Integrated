@@ -249,10 +249,6 @@ export function AppShellLayout({
     </Tooltip>
   );
 
-  // The rail hides the label and a tooltip is not a name, so say it outright.
-  const nameWith = (text: string, count: number) =>
-    count ? `${text}, ${count} pending` : text;
-
   const labelWith = (text: string, count: number) =>
     count ? (
       <Group justify="space-between" gap="xs" wrap="nowrap">
@@ -280,7 +276,6 @@ export function AppShellLayout({
           type="button"
           classNames={navLinkClasses}
           label={isOpen ? item.label : labelWith(item.label, groupCount)}
-          aria-label={nameWith(item.label, isOpen ? 0 : groupCount)}
           leftSection={<Icon size={16} />}
           opened={isOpen}
           aria-expanded={isOpen}
@@ -319,7 +314,6 @@ export function AppShellLayout({
         key={item.code}
         classNames={navLinkClasses}
         label={labelWith(item.label, navCounts[to] ?? 0)}
-        aria-label={nameWith(item.label, navCounts[to] ?? 0)}
         leftSection={<Icon size={16} />}
         active={isActive}
         data-pending={navCounts[to] ? "true" : undefined}

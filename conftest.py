@@ -21,15 +21,13 @@ class FakeIam:
         self.calls = []
         self.login_result = "tok-123"      # override per test
         self.login_error = None
-        self.login_client_ip = None
         self.standings_error = None
         self.directory_error = None
         self.directory = {"count": 0, "limit": 50, "offset": 0, "results": []}
         self.filters = {"disciplines": [], "batch_years": [], "programmes": []}
 
-    def login(self, username, password, client_ip=None):
+    def login(self, username, password):
         self.calls.append(("login", username))
-        self.login_client_ip = client_ip
         if self.login_error:
             raise self.login_error
         return self.login_result
